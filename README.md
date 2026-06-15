@@ -1,36 +1,194 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CBT Platform
 
-## Getting Started
+Simple CBT Platform for School Students.
 
-First, run the development server:
+Built With:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Next.js
+- MongoDB
+- Docker
+- Tailwind CSS
+
+Supports:
+
+- Tamil Questions
+- English Questions
+- Word File Upload
+- Roll Number Based Exam System
+
+---
+
+# Project Structure
+
+```text
+cbt-platform/
+│
+├── app/
+├── components/
+├── lib/
+├── models/
+├── uploads/
+│
+├── docker/
+│   ├── dev/
+│   └── prod/
+│
+├── docker-compose.dev.yml
+├── docker-compose.prod.yml
+│
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Requirements
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Install:
 
-## Learn More
+- Node.js
+- Docker Desktop
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Development Setup
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Start Development Server
 
-## Deploy on Vercel
+```bash
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open:
+
+```text
+http://localhost:3000
+```
+
+---
+
+```bash
+docker compose -f docker-compose.dev.yml up --build
+```
+
+# Stop Development Server
+
+```bash
+CTRL + C
+```
+
+OR
+
+```bash
+docker compose -f docker-compose.dev.yml down
+```
+
+---
+
+# Production Setup
+
+# Start Production Server
+
+```bash
+docker compose -f docker-compose.prod.yml up --build -d
+```
+
+---
+
+# Stop Production Server
+
+```bash
+docker compose -f docker-compose.prod.yml down
+```
+
+---
+
+# MongoDB Commands
+
+# Open Mongo Shell
+
+```bash
+docker exec -it cbt-platform-mongo-1 mongosh
+```
+
+# Select Database
+
+```js
+use cbt
+```
+
+# View Tests
+
+```js
+db.tests.find();
+```
+
+---
+
+# API Test
+
+# Create Test API
+
+POST:
+
+```text
+http://localhost:3000/api/tests/create
+```
+
+Example JSON:
+
+```json
+{
+  "title": "Unit Test",
+  "subject": "Computer Science",
+  "duration": 30,
+  "language": "tamil",
+  "questions": [
+    {
+      "question": "கணினியின் மூளை எது?",
+      "options": ["CPU", "RAM", "ROM", "SSD"],
+      "correctAnswer": "CPU"
+    }
+  ]
+}
+```
+
+---
+
+# Features
+
+- Create Tests
+- MCQ Questions
+- Tamil Support
+- English Support
+- Student Roll Number Entry
+- Result Storage
+- Docker Support
+- MongoDB Storage
+
+---
+
+# Future Features
+
+- Word Upload
+- AI Question Generator
+- Student Analytics
+- Exam Timer
+- Fullscreen Exam Mode
+- Auto Submit
+- Random Questions
+
+---
+
+# Notes
+
+Development mode supports:
+
+- Hot Reload
+- Live Changes
+- Auto Refresh
+
+Production mode uses:
+
+- Optimized Build
+- Stable Runtime
+- Restart Policies

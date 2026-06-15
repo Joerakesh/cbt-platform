@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* 🎨 Centralized School Colors (Monochrome / Black & White) */
+  --school-primary: #000000; /* Solid Black (Main buttons & headers) */
+  --school-primary-hover: #333333; /* Dark Gray (Button hover states) */
+  --school-secondary: #555555; /* Medium Gray (Accents & icons) */
+  --school-background: #ffffff; /* Pure White (App background) */
+  --school-surface: #f3f4f6; /* Very Light Gray (Badge backgrounds) */
+  --school-border: #d1d5db; /* Light Gray (Badge borders) */
 }
 
 @theme inline {
