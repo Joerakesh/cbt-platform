@@ -1,140 +1,116 @@
 # CBT Platform
 
-Simple CBT Platform for School Students.
+A web-based **Computer-Based Testing platform** for creating and conducting school assessments. The project is built with **Next.js, React, TypeScript, MongoDB and Tailwind CSS**, with support for Tamil and English question content.
 
-Built With:
+## Project capabilities
 
-- Next.js
-- MongoDB
-- Docker
-- Tailwind CSS
+The current project is designed around these workflows:
 
-Supports:
+- Create and manage tests.
+- Prepare multiple-choice questions.
+- Support Tamil and English question content.
+- Enter examinations using a student roll number.
+- Store test and result data in MongoDB.
+- Import question content from Word documents using document-processing dependencies.
+- Run the application locally or through the supplied Docker Compose configurations.
 
-- Tamil Questions
-- English Questions
-- Word File Upload
-- Roll Number Based Exam System
+> Feature availability can depend on the current application configuration and implementation. Check the UI and API before treating roadmap items as released functionality.
 
----
+## Technology stack
 
-# Project Structure
+| Layer | Technology |
+| --- | --- |
+| Framework | Next.js 16 |
+| UI | React 19 |
+| Language | TypeScript |
+| Database | MongoDB with Mongoose |
+| State management | Redux Toolkit |
+| Forms and validation | React Hook Form, Zod |
+| Styling | Tailwind CSS |
+| Document handling | Mammoth |
+| Spreadsheet support | XLSX |
+| Containerization | Docker Compose |
+
+## Repository layout
 
 ```text
 cbt-platform/
-│
-├── app/
-├── components/
-├── lib/
-├── models/
-├── uploads/
-│
-├── docker/
-│   ├── dev/
-│   └── prod/
-│
+├── app/                 # Next.js routes and application pages
+├── components/          # Reusable UI components
+├── lib/                 # Shared utilities and application logic
+├── models/              # MongoDB/Mongoose models
+├── docker/              # Docker-related configuration
 ├── docker-compose.dev.yml
 ├── docker-compose.prod.yml
-│
 └── README.md
 ```
 
----
+## Requirements
 
-# Requirements
+- Node.js compatible with the installed Next.js version
+- npm
+- MongoDB (local or hosted), or Docker Desktop with Docker Compose
 
-Install:
-
-- Node.js
-- Docker Desktop
-
----
-
-# Development Setup
-
-# Start Development Server
+## Run locally
 
 ```bash
-
+git clone https://github.com/Joerakesh/cbt-platform.git
+cd cbt-platform
+npm install
 ```
 
-Open:
+Create a local environment file using the variables required by the application. Do not commit secrets:
 
-```text
-http://localhost:3000
+```bash
+# Windows PowerShell
+Copy-Item .env.example .env.local
+
+# macOS / Linux
+cp .env.example .env.local
 ```
 
----
+Configure the MongoDB connection and any authentication secrets in the local environment file, then start the development server:
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+## Docker
+
+Development:
 
 ```bash
 docker compose -f docker-compose.dev.yml up --build
 ```
 
-# Stop Development Server
-
-```bash
-CTRL + C
-```
-
-OR
-
-```bash
-docker compose -f docker-compose.dev.yml down
-```
-
----
-
-# Production Setup
-
-# Start Production Server
+Production-style local container run:
 
 ```bash
 docker compose -f docker-compose.prod.yml up --build -d
 ```
 
----
-
-# Stop Production Server
+Stop the corresponding stack:
 
 ```bash
+docker compose -f docker-compose.dev.yml down
+# or
 docker compose -f docker-compose.prod.yml down
 ```
 
----
-
-# MongoDB Commands
-
-# Open Mongo Shell
+## Useful scripts
 
 ```bash
-docker exec -it cbt-platform-mongo-1 mongosh
+npm run dev
+npm run build
+npm run start
+npm run lint
 ```
 
-# Select Database
+## API example
 
-```js
-use cbt
-```
-
-# View Tests
-
-```js
-db.tests.find();
-```
-
----
-
-# API Test
-
-# Create Test API
-
-POST:
-
-```text
-http://localhost:3000/api/tests/create
-```
-
-Example JSON:
+The repository includes a test-creation endpoint at `POST /api/tests/create`. An example request shape:
 
 ```json
 {
@@ -152,43 +128,20 @@ Example JSON:
 }
 ```
 
----
+Use the application's actual validation rules and authentication requirements when calling the endpoint.
 
-# Features
+## Security checklist
 
-- Create Tests
-- MCQ Questions
-- Tamil Support
-- English Support
-- Student Roll Number Entry
-- Result Storage
-- Docker Support
-- MongoDB Storage
+Before using this system with real student data, verify server-side authorization for every exam and result endpoint, protect answer keys from student responses, validate uploaded files and file sizes, hash passwords, secure session handling, and test exam submission and timing behavior. Use synthetic student data during development.
 
----
+## Roadmap
 
-# Future Features
+- Strong role-based access for administrators, staff and students.
+- Question bank and reusable question sets.
+- Reliable exam scheduling and timed submissions.
+- Audit logs and result exports.
+- Automated tests for authentication, authorization and exam integrity.
 
-- Word Upload
-- AI Question Generator
-- Student Analytics
-- Exam Timer
-- Fullscreen Exam Mode
-- Auto Submit
-- Random Questions
+## License
 
----
-
-# Notes
-
-Development mode supports:
-
-- Hot Reload
-- Live Changes
-- Auto Refresh
-
-Production mode uses:
-
-- Optimized Build
-- Stable Runtime
-- Restart Policies
+No license is specified here. Contact the repository owner before reusing or redistributing the code.
